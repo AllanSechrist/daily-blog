@@ -1,9 +1,11 @@
 const express = require("express")
 const bodyParser = require("body-parser")
-const ejs = require("ejs")
+
 
 
 const app = express()
+
+const posts = []
 
 const homeStartingContent = "Hello"
 const aboutContent = "World"
@@ -16,7 +18,7 @@ app.use(express.static("public"))
 
 
 app.get("/", (req,res) => {
-    res.render('home', {homeStartingContent: homeStartingContent})
+    res.render('home', {posts: posts})
 })
 
 app.get("/about", (req, res) => {
@@ -32,9 +34,14 @@ app.get("/compose", (req, res) => {
 })
 
 app.post("/compose", (req, res) => {
-    let post = {title : req.body.title,
+    const post = {title : req.body.title,
                 body : req.body.body}
-    console.log(post)
+    posts.push(post)
+    res.redirect("/")
+})
+
+app.get("/posts/:day", (req, res) => {
+    console.log(req.params.day)
 })
 
 app.listen(3000, function(){
