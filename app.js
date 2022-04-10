@@ -1,6 +1,6 @@
 const express = require("express")
 const bodyParser = require("body-parser")
-const lodash = require("lodash")
+const _ = require("lodash")
 
 
 
@@ -43,7 +43,7 @@ app.post("/compose", (req, res) => {
 
 app.get("/posts/:title", (req, res) => {
     posts.forEach((post) => {
-        if (lodash.lowerCase(post.title) === lodash.lowerCase(req.params.title)) {
+        if (_.lowerCase(post.title) === _.lowerCase(req.params.title)) {
             console.log("Match Found!")
         }
     })
