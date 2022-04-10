@@ -1,5 +1,6 @@
 const express = require("express")
 const bodyParser = require("body-parser")
+const lodash = require("lodash")
 
 
 
@@ -40,8 +41,12 @@ app.post("/compose", (req, res) => {
     res.redirect("/")
 })
 
-app.get("/posts/:day", (req, res) => {
-    console.log(req.params.day)
+app.get("/posts/:title", (req, res) => {
+    posts.forEach((post) => {
+        if (lodash.lowerCase(post.title) === lodash.lowerCase(req.params.title)) {
+            console.log("Match Found!")
+        }
+    })
 })
 
 app.listen(3000, function(){
