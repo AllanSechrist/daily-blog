@@ -44,7 +44,10 @@ app.post("/compose", (req, res) => {
 app.get("/posts/:title", (req, res) => {
     posts.forEach((post) => {
         if (_.lowerCase(post.title) === _.lowerCase(req.params.title)) {
-            console.log("Match Found!")
+            res.render("post", {
+                title: post.title, 
+                body: post.body
+            })
         }
     })
 })
